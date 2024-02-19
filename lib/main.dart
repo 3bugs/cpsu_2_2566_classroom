@@ -14,11 +14,14 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'CLASSROOM',
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.green),
+        colorScheme: ColorScheme.fromSeed(
+          seedColor: Colors.purple,
+          //brightness: Brightness.dark,
+        ),
         useMaterial3: true,
       ),
-      home: const PinLoginPage(),
+      // home: const PinLoginPage(),
+      home: const HomePage(),
     );
   }
 }
-
