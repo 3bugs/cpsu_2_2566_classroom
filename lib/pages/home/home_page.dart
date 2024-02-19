@@ -66,7 +66,7 @@ class _HomePageState extends State<HomePage> {
         height: 64.0,
         padding: EdgeInsets.zero,
         color: kBottomBarBackgroundColor,
-        notchMargin: 6.0,
+        notchMargin: 4.0,
         shape: const CircularNotchedRectangle(),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
