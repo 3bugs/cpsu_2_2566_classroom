@@ -26,8 +26,6 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    var theme = Theme.of(context);
-
     Widget _buildPageBody() {
       switch (_selectedIndex) {
         case 0:
@@ -66,7 +64,7 @@ class _HomePageState extends State<HomePage> {
         height: 64.0,
         padding: EdgeInsets.zero,
         color: kBottomBarBackgroundColor,
-        notchMargin: 4.0,
+        // notchMargin: 4.0,
         shape: const CircularNotchedRectangle(),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -91,13 +89,13 @@ class _HomePageState extends State<HomePage> {
           ],
         ),
       ),
-      body: Container(child: Center(child: _buildPageBody())),
+      body: _buildPageBody(),
     );
   }
 }
 
 class AppBottomMenuItem extends StatelessWidget {
-  const AppBottomMenuItem({
+  AppBottomMenuItem({
     super.key,
     required this.iconData,
     required this.text,
