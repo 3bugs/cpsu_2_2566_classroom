@@ -26,7 +26,7 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    Widget _buildPageBody() {
+    Widget buildPageBody() {
       switch (_selectedIndex) {
         case 0:
           return const TimeTable();
@@ -74,7 +74,9 @@ class _HomePageState extends State<HomePage> {
                 iconData: Icons.schedule,
                 text: 'ตารางเรียน/สอบ',
                 isSelected: _selectedIndex == 0,
-                onClick: () => _handleClickButton(0),
+                onClick: () {
+                  _handleClickButton(0);
+                },
               ),
             ),
             SizedBox(width: 100.0),
@@ -89,7 +91,7 @@ class _HomePageState extends State<HomePage> {
           ],
         ),
       ),
-      body: _buildPageBody(),
+      body: buildPageBody(),
     );
   }
 }
