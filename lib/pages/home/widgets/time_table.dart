@@ -30,23 +30,22 @@ class _TimeTableState extends State<TimeTable> {
             print(response.data.toString());
 
             setState(() {
-              var list = jsonDecode(response.data.toString());
+              List list = jsonDecode(response.data.toString());
 
-              _countries =
-                  list.map<Country>((item) => Country.fromJson(item)).toList();
+              _countries = list.map((item) => Country.fromJson(item)).toList();
 
-              // for (var i = 0; i < list!.length; i++) {
+              // for (var i = 0; i < list.length; i++) {
               //   var map = list![i];
-              //   //var name = map['name'];
-              //   //var capital = map['capital'];
-              //   //var flag = map['media']['flag'];
-              //   //var population = map['population'];
+              //   var name = map['name'];
+              //   var capital = map['capital'];
+              //   var flag = map['media']['flag'];
+              //   var population = map['population'];
 
               //   var country = Country(
-              //     name: 'Thailand',
-              //     //capital: capital,
-              //     //population: population,
-              //     //flag: flag,
+              //     name: name,
+              //     capital: capital,
+              //     population: population,
+              //     flag: flag,
               //   );
               //   _countries!.add(country);
               // }
