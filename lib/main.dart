@@ -1,4 +1,5 @@
 import 'package:classroom/pages/home/home_page.dart';
+import 'package:classroom/pages/login/login_page.dart';
 import 'package:classroom/pages/pin_login/pin_login_page.dart';
 import 'package:flutter/material.dart';
 
@@ -21,7 +22,7 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
       ),
       // home: const PinLoginPage(),
-      home: const HomePage(),
+      home: const LoginPage(),
     );
   }
 }
