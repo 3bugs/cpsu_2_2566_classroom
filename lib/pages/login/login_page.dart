@@ -42,58 +42,67 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: Padding(
-      padding: const EdgeInsets.symmetric(
-        vertical: 20.0,
-        horizontal: 40.0,
+      body: Padding(
+        padding: const EdgeInsets.symmetric(
+          vertical: 20.0,
+          horizontal: 40.0,
+        ),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Icon(Icons.security, size: 80.0),
+            Text('LOGIN', style: Theme.of(context).textTheme.titleLarge),
+            SizedBox(height: 20.0),
+            TextField(
+              controller: _usernameController,
+              decoration: InputDecoration(
+                hintText: 'Enter username',
+                border: OutlineInputBorder(),
+              ),
+            ),
+            SizedBox(height: 20.0),
+            TextField(
+              controller: _passwordController,
+              decoration: InputDecoration(
+                hintText: 'Enter password',
+                border: OutlineInputBorder(),
+              ),
+            ),
+            SizedBox(height: 20.0),
+            ElevatedButton(
+              onPressed: _handleClickLogin,
+              child: SizedBox(
+                width: double.infinity,
+                child: Text('Login', textAlign: TextAlign.center),
+              ),
+            )
+          ],
+        ),
       ),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Icon(Icons.security, size: 80.0),
-          Text('LOGIN', style: Theme.of(context).textTheme.titleLarge),
-          SizedBox(height: 20.0),
-          TextField(
-            controller: _usernameController,
-            decoration: InputDecoration(
-              hintText: 'Enter username',
-              border: OutlineInputBorder(),
-            ),
-          ),
-          SizedBox(height: 20.0),
-          TextField(
-            controller: _passwordController,
-            decoration: InputDecoration(
-              hintText: 'Enter password',
-              border: OutlineInputBorder(),
-            ),
-          ),
-          SizedBox(height: 20.0),
-          ElevatedButton(
-            onPressed: () async {
-              print('Username: ${_usernameController.text}');
-              print('Password: ${_passwordController.text}');
-              var caller = ApiCaller();
-              var data = await caller.post('login', params: {
-                "username": _usernameController.text,
-                "password": _passwordController.text
-              });
-              var json = jsonDecode(data);
-              var token = json['token'];
-              var fullName = json['user']['fullName'];
-              debugPrint('Token: $token, Full Name: $fullName');
+    );
+  }
 
-              var storage = Storage();
-              storage.write(Storage.keyToken, token);
-              storage.write(Storage.keyFullName, fullName);
-            },
-            child: SizedBox(
-              width: double.infinity,
-              child: Text('Login', textAlign: TextAlign.center),
-            ),
-          )
-        ],
-      ),
-    ));
+  void _handleClickLogin() async {
+    print('Username: ${_usernameController.text}');
+    print('Password: ${_passwordController.text}');
+
+    var caller = ApiCaller();
+    var data = await caller.post('login', params: {
+      "username": _usernameController.text,
+      "password": _passwordController.text
+    });
+    var json = jsonDecode(data);
+    var token = json['token'];
+    var fullName = json['user']['fullName'];
+    debugPrint('Token: $token, Full Name: $fullName');
+
+    var storage = Storage();
+    storage.write(Storage.keyToken, token);
+    storage.write(Storage.keyFullName, fullName);
+
+    Navigator.pushReplacement(
+      context,
+      MaterialPageRoute(builder: (_) => const HomePage()),
+    );
   }
 }
