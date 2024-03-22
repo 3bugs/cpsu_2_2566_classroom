@@ -1,11 +1,7 @@
-import 'dart:convert';
-
-import 'package:classroom/services/storage.dart';
-import 'package:classroom/utils/dialog_utils.dart';
 import 'package:flutter/material.dart';
 
 import '../../repositories/auth_repository.dart';
-import '../../services/api_caller.dart';
+import '../../utils/dialog_utils.dart';
 import '../home/home_page.dart';
 
 class LoginPage extends StatefulWidget {

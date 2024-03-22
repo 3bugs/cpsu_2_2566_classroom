@@ -94,10 +94,10 @@ class _PinLoginPageState extends State<PinLoginPage> {
   }
 
   Widget _buildRow(List<int> numList) {
-    List<int> myList = [
-      for (var i = 2; i <= 100; i++)
-        if (i % 2 == 0) i
-    ];
+    // List<int> myList = [
+    //   for (var i = 2; i <= 100; i++)
+    //     if (i % 2 == 0) i
+    // ];
 
     // var oldList = [1, 2, 3, 4, 5];
     // var newList = oldList.map((int num) => num * 10).toList();

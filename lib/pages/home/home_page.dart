@@ -1,7 +1,6 @@
 import 'package:classroom/pages/home/widgets/attendance.dart';
 import 'package:classroom/pages/home/widgets/class_schedule.dart';
 import 'package:classroom/pages/home/widgets/notification.dart';
-import 'package:classroom/pages/home/widgets/time_table.dart';
 import 'package:flutter/material.dart';
 
 import '../../repositories/auth_repository.dart';
