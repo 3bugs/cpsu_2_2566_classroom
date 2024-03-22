@@ -15,11 +15,12 @@ class AuthRepository {
     required String password,
   }) async {
     var data = await ApiCaller().post(
-      'login',
+      '/login',
       params: {
         "username": username,
         "password": password,
       },
+      withToken: false,
     );
     var map = jsonDecode(data);
     var token = map['token'];

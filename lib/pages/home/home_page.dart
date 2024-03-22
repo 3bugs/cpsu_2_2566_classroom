@@ -1,7 +1,11 @@
 import 'package:classroom/pages/home/widgets/attendance.dart';
+import 'package:classroom/pages/home/widgets/class_schedule.dart';
 import 'package:classroom/pages/home/widgets/notification.dart';
 import 'package:classroom/pages/home/widgets/time_table.dart';
 import 'package:flutter/material.dart';
+
+import '../../repositories/auth_repository.dart';
+import '../login/login_page.dart';
 
 var kBottomBarBackgroundColor = Colors.purple[800];
 var kBottomBarForegroundActiveColor = Colors.white;
@@ -29,19 +33,49 @@ class _HomePageState extends State<HomePage> {
     Widget buildPageBody() {
       switch (_selectedIndex) {
         case 0:
-          return const TimeTable();
+          return const ClassSchedule();
         case 1:
           return const Attendance();
         case 2:
           return const AppNotification();
         default:
-          return const TimeTable();
+          return const ClassSchedule();
       }
     }
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('HOME'),
+        centerTitle: true,
+        backgroundColor: kBottomBarBackgroundColor,
+        title: FutureBuilder<String?>(
+          future: AuthRepository().fullName,
+          builder: (context, snapshot) {
+            if (snapshot.connectionState == ConnectionState.done) {
+              if (snapshot.hasData) {
+                return Text(snapshot.data!);
+              } else {
+                return const Text('Oops!');
+              }
+            } else {
+              return const Text('Loading...');
+            }
+          },
+        ),
+        actions: [
+          Padding(
+            padding: const EdgeInsets.only(right: 8.0),
+            child: IconButton(
+              icon: const Icon(Icons.logout, color: Colors.white),
+              onPressed: () async {
+                await AuthRepository().logout();
+                Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(builder: (_) => const LoginPage()),
+                );
+              },
+            ),
+          )
+        ],
       ),
       floatingActionButton: SizedBox(
         width: 80.0,

@@ -13,14 +13,14 @@ const mockUsers = [
     username: 'admin',
     password: '123456',
     fullName: 'Administrator',
-    attendances: [],
+    classSessions: [],
   },
   {
     id: 2,
     username: 'user1',
     password: '111111',
     fullName: 'User One',
-    attendances: [
+    classSessions: [
       {
         date: "2024-01-07",
         status: true,
@@ -53,10 +53,10 @@ const mockUsers = [
     username: 'user2',
     password: '222222',
     fullName: 'User Two',
-    attendances: [
+    classSessions: [
       {
         date: "2024-01-07",
-        status: true,
+        status: false,
         canCheckIn: false,
       },
       {
@@ -86,7 +86,7 @@ const mockUsers = [
     username: 'user3',
     password: '333333',
     fullName: 'User Three',
-    attendances: [
+    classSessions: [
       {
         date: "2024-01-07",
         status: false,
@@ -146,7 +146,7 @@ app.post('/login', function (req, res) {
       },
     });
   } else {
-    res.status(401).send("Unauthorized");
+    res.status(401).send("Invalid username or password");
   }
 });
 
@@ -171,13 +171,13 @@ function verifyToken(req, res) {
   }
 }
 
-app.get('/attendances', function (req, res) {
+app.get('/class-schedule', function (req, res) {
   const user = verifyToken(req, res);
   if (!user) {
     return;
   }
-  res.status(200).send({ attendances: user.attendances });
+  res.status(200).send(user.classSessions);
 });
 
-const PORT = 3001;
+const PORT = 8000;
 app.listen(PORT, () => console.log(`Listening on port ${PORT}`));

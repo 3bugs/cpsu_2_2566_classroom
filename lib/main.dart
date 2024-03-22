@@ -19,6 +19,10 @@ class MyApp extends StatelessWidget {
           seedColor: Colors.purple,
           //brightness: Brightness.dark,
         ),
+        appBarTheme: AppBarTheme(
+          // backgroundColor: Colors.blue,
+          foregroundColor: Colors.white,
+        ),
         useMaterial3: true,
       ),
       // home: const PinLoginPage(),
