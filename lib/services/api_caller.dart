@@ -7,16 +7,16 @@ class ApiCaller {
   /**
    * อย่าลืมเปลี่ยน baseUrl ให้ตรงกับที่ใช้งานจริง
    */
-  // static const baseUrl = 'http://localhost:3001';
+  static const baseUrl = 'http://localhost:8000';
   // static const baseUrl = 'http://192.168.1.39:3001';
-  static const baseUrl = 'http://192.168.1.48:8000';
+  // static const baseUrl = 'http://192.168.1.48:8000';
   static final _dio = Dio(BaseOptions(
     baseUrl: baseUrl,
     responseType: ResponseType.plain,
   ));
 
   Future<String> get(
-    String endpoint, {
+    String path, {
     Map<String, dynamic>? params,
     bool withToken = true,
   }) async {
@@ -24,7 +24,7 @@ class ApiCaller {
 
     try {
       final response = await _dio.get(
-        endpoint,
+        path,
         queryParameters: params,
         options: Options(
           headers: {
@@ -45,7 +45,7 @@ class ApiCaller {
   }
 
   Future<String> post(
-    String endpoint, {
+    String path, {
     required Map<String, dynamic>? params,
     bool withToken = true,
   }) async {
@@ -53,7 +53,7 @@ class ApiCaller {
 
     try {
       final response = await _dio.post(
-        endpoint,
+        path,
         data: params,
         options: Options(
           headers: {
