@@ -55,11 +55,11 @@ class ApiCaller {
       final response = await _dio.post(
         endpoint,
         data: params,
-        // options: Options(
-        //   headers: {
-        //     if (withToken) "Authorization": "Bearer $token",
-        //   },
-        // ),
+        options: Options(
+          headers: {
+            if (withToken) "Authorization": "Bearer $token",
+          },
+        ),
       );
       debugPrint('Status code: ${response.statusCode}');
       debugPrint(response.data.toString());

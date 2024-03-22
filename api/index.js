@@ -179,5 +179,22 @@ app.get('/class-schedule', function (req, res) {
   res.status(200).send(user.classSessions);
 });
 
+app.post('/check-in', function (req, res) {
+  const user = verifyToken(req, res);
+  if (!user) {
+    return;
+  }
+  const { date } = req.body;
+  const classSession = user.classSessions.find(
+    (session) => session.date === date
+  );
+  if (!classSession) {
+    res.status(404).send("Specified date not found");
+    return;
+  }
+  classSession.status = true;
+  res.status(200).send("OK");
+})
+
 const PORT = 8000;
 app.listen(PORT, () => console.log(`Listening on port ${PORT}`));

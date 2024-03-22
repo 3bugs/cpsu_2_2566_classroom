@@ -1,3 +1,5 @@
+import '../services/api_caller.dart';
+
 class ClassSession {
   final String date;
   final bool? status;
@@ -17,7 +19,7 @@ class ClassSession {
     );
   }
 
-  void checkIn() {
-    
+  Future<void> checkIn() async {
+    await ApiCaller().post('/check-in', params: {'date': date});
   }
 }

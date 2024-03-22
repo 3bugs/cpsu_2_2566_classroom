@@ -16,10 +16,10 @@ class _ClassScheduleState extends State<ClassSchedule> {
   @override
   void initState() {
     super.initState();
-    init();
+    loadData();
   }
 
-  Future<void> init() async {
+  Future<void> loadData() async {
     var sessions = await ClassSessionsRepository().fetchClassSessions();
     setState(() {
       _classSessions = sessions;
@@ -42,7 +42,8 @@ class _ClassScheduleState extends State<ClassSchedule> {
           icon = OutlinedButton(
             child: Text('Check In'),
             onPressed: () async {
-              // var result = await ClassSessionsRepository().checkIn(session!);
+              await session?.checkIn();
+              loadData();
             },
           );
         }
