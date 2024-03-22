@@ -1,6 +1,6 @@
 import 'package:classroom/pages/home/home_page.dart';
 import 'package:classroom/pages/login/login_page.dart';
-import 'package:classroom/pages/pin_login/pin_login_page.dart';
+import 'package:classroom/repositories/auth_repository.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -22,7 +22,24 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
       ),
       // home: const PinLoginPage(),
-      home: const LoginPage(),
+      home: FutureBuilder(
+        future: AuthRepository().token,
+        builder: (context, snapshot) {
+          if (snapshot.connectionState == ConnectionState.done) {
+            if (snapshot.hasData) {
+              return const HomePage();
+            } else {
+              return const LoginPage();
+            }
+          } else {
+            return const Scaffold(
+              body: Center(
+                child: CircularProgressIndicator(),
+              ),
+            );
+          }
+        },
+      ),
     );
   }
 }

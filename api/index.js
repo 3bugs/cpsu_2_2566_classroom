@@ -179,4 +179,5 @@ app.get('/attendances', function (req, res) {
   res.status(200).send({ attendances: user.attendances });
 });
 
-app.listen(3000);
+const PORT = 3001;
+app.listen(PORT, () => console.log(`Listening on port ${PORT}`));

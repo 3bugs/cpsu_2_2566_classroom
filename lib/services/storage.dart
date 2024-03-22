@@ -1,16 +1,16 @@
-import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+// import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
-class Storage {
-  static const keyToken = 'token';
-  static const keyFullName = 'fullName';
+// class Storage {
+//   static const keyToken = 'token';
+//   static const keyFullName = 'fullName';
 
-  final storage = FlutterSecureStorage();
+//   final storage = FlutterSecureStorage();
 
-  Future<String?> read(String key) async {
-    return await storage.read(key: key);
-  }
+//   Future<String?> read(String key) async {
+//     return await storage.read(key: key);
+//   }
 
-  Future<void> write(String key, String value) async {
-    await storage.write(key: key, value: value);
-  }
-}
+//   Future<void> write(String key, String value) async {
+//     await storage.write(key: key, value: value);
+//   }
+// }
